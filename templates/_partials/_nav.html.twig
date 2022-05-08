@@ -7,14 +7,23 @@
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
   <div>
+  {% if app.user %}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-      <a href="/">Home</a>
+      
+    </button>  
+    
+    {% endif %}
+    <a href="/">Home</a>
   </div>
     <div>
-      <a href="/login">Register</a>
+    {% if app.user %}
+      <a href="{{ path('app_logout') }}">Logout</a>
+    {% else %}
+      <a href="/register">Register</a>
       <a href="/login">Login</a>
+    {% endif %}
+      
     </div>
   </div>
 </nav>
