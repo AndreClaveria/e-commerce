@@ -3,7 +3,7 @@
 {% block body %}
 
 {% if app.user %}
-    <h2>Bienvenue {{ app.user.pseudo }} </h2>
+   
 {% else %}
     <h2>Accueil</h2>
 
@@ -18,7 +18,7 @@
 					<h3 class="card-header">{{ produits.nom }}</h3>
 					<img src="{{ produits.image }}" alt="Image du produit">
 					<div class="card body">
-						<p class="card-text text-end fw-bold">{{ produits.prix }}</p>
+						<p class="card-text text-end fw-bold">{{ produits.prix }} €</p>
 					</div>
 					
 				</div>
