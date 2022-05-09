@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\SlugTrait;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
 {
+    use SlugTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -17,12 +20,6 @@ class Categorie
 
     #[ORM\Column(type: 'string', length: 255)]
     private $titre;
-
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
-    private $parent;
-
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
-    private $categories;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
     private $produits;
@@ -49,49 +46,6 @@ class Categorie
 
         return $this;
     }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(self $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-            $category->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(self $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getParent() === $this) {
-                $category->setParent(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Produit>
      */

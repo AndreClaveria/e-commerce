@@ -5,8 +5,27 @@
 {% if app.user %}
     <h2>Bienvenue {{ app.user.pseudo }} </h2>
 {% else %}
-<h2>Accueil</h2>
+    <h2>Accueil</h2>
+
 {% endif %}
+<h1 class="text-center my-3">Liste des produits</h1>
+	<div class="row">
+
+		{% for produits in produit %}
+
+			<div class="col-md-4">
+				<div class="card mb-4" style="width: 18rem;">
+					<h3 class="card-header">{{ produits.nom }}</h3>
+					<img src="{{ produits.image }}" alt="Image du produit">
+					<div class="card body">
+						<p class="card-text text-end fw-bold">{{ produits.prix }}</p>
+					</div>
+					
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
 
 
 {% endblock %}
