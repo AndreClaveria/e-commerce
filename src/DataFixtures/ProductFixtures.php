@@ -23,7 +23,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $products->setDescription($faker->text());
             $products->setPrix($faker->numberBetween(0, 1000));
             $products->setSlug($this->slugger->slug($products->getNom())->lower());
-            $products->setImage($faker->image(null, 640, 480));
+            $products->setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Tractionfr02.jpg/420px-Tractionfr02.jpg");
             $category = $this->getReference('cat-'.rand(1, 5));
             $products->setCategorie($category);
             $user = $this->getReference('user-'.rand(1, 4));

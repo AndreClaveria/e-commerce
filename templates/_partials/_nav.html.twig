@@ -1,31 +1,37 @@
 <div class="collapse" id="navbarToggleExternalContent">
   <div class="bg-dark p-4">
-    <h5 class="text-white h4"> Bievenue {{ app.user.pseudo }}</h5>
-    
+    <div class="nav-dessus">
+      {% if app.user %}
+      <h2 class="text-white h4"> Bienvenue {{ app.user.pseudo }}</h2>
+      <div>
+        <a href="/register">Profil</a>
+        <a href="/cart">Panier</a>
+      </div>
+      {% endif %}
+    </div>
   </div>
 </div>
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-  <div>
-  {% if app.user %}
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      
-    </button>  
-    
-    {% endif %}
-    <a href="/">Home</a>
-  </div>
     <div>
-    {% if app.user %}
+      {% if app.user %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+      {% endif %}
+      <a href="/">Home</a>
+    </div>
+    <div>
+      {% if app.user %}
       <a href="{{ path('app_logout') }}">Logout</a>
-    {% else %}
+      {% else %}
       <a href="/register">Register</a>
       <a href="/login">Login</a>
-    {% endif %}
-      <button class=button>
-      Ok
-      </button>
+      {% endif %}
     </div>
   </div>
 </nav>
