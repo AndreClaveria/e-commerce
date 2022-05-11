@@ -40,10 +40,12 @@ class CartService
   
         $cart = $session->get('cart', []);
         //si le produit existe déja 
-        if (!empty($cart[$id]))
+        if (!empty($cart[$id]) && $cart[$id] > 1)
             $cart[$id]--;
-        else
-            $cart[$id] = 0;
+        elseif ($cart[$id] < 1)
+            $cart[$id] = 1;
+        
+            
         // je récupère l'attribut de session 'cart' s'il existe, ou un tableau vide
   
         $session->set('cart', $cart);
