@@ -14,24 +14,26 @@ html {
     scroll-behavior: smooth;
 }
 
-/* section{
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-} */
 /* 
 +----------------------------------------------------------------------+
 | Navbar + global
 +----------------------------------------------------------------------+
 */
-.button {
-    background-color:blue;
-    color: aqua;
-}
 
+.navbar-dark {
+    background-color: black;
+    opacity: 0.95;
+    border-bottom: 1px solid darkred;
+}
 .navbar-dark .navbar-toggler {
-    color:rgba(0,0 255, .55);
-    border-color: rgba(255,255,255,0);
+    border-color: darkred;
+    border-radius: 20%;
+}
+.navbar-dark .navbar-toggler:hover {
+    background-color: darkred;
+}
+.navbar-dark .navbar-toggler:focus {
+    box-shadow: none;
 }
 .nav-dessus{
     display: flex;
@@ -39,11 +41,56 @@ html {
     align-items: center;
 
 }
+.bg-dark{
+    background-color: black !important;
+    opacity: 0.94;
+    border-bottom: 1px solid darkred;
+}
+.p-4{
+    padding: 0.1 !important;
+}
+.contener-button{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 h2{
     font-size: 40px;
     margin-bottom: 40px;
     color: var(--couleur-blanche);
 }
+h3{
+    font-size: 40px;
+    color: var(--couleur-blanche);
+}
+h3 span{
+    font-size: 40px;
+    border-bottom: solid 2px var(--couleur-bleu);
+}
+a{
+    color: var(--couleur-blanche);
+    border-bottom: 2px solid var(--couleur-bleu);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+span{
+    color: var(--couleur-blanche);
+}
+a:hover{
+    color: var(--couleur-bleu);
+    border-bottom: 2px solid var(--couleur-bleu);
+    font-size: 15px;
+    text-decoration: none;
+}
+.Accueil{
+    margin-top: 50px;
+}
+
+/* Burger menu */
+
+
 /* 
 +----------------------------------------------------------------------+
 | register login
@@ -128,11 +175,18 @@ h2{
     padding: 10px;
     width: 100%;
     border-radius: 20px;
+    margin-top: 5px;
 }
 .for-button button:hover{
     color: var(--couleur-blanche);
     background-color:dodgerblue;
-
+}
+.button-nav{
+    border: none;
+}
+.button-nav:hover{
+    border: none;
+    filter: brightness(2);
 }
 /* 
 +----------------------------------------------------------------------+

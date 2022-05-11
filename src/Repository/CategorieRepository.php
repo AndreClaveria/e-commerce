@@ -47,6 +47,17 @@ class CategorieRepository extends ServiceEntityRepository
         }
     }
 
+    public function getCategoriesByName($saisie)
+        {
+            // createQueryBuilder() prend en arg un alias qui représente la table
+            return $this->createQueryBuilder('a')
+                        ->andWhere('a.titre LIKE :val')
+                        ->setParameter('val', "%$saisie%")
+                        ->orderBy('a.titre', 'ASC')
+                        ->getQuery()
+                        ->getResult();
+        }
+
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */

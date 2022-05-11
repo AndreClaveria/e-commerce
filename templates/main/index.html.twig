@@ -5,16 +5,32 @@
     <div class="index-body">
        
         <h2>Accueil</h2>
+         {{ form_start(formRecherche) }}
+
+        {{ form_widget(formRecherche.recherche, {
+	    attr: {
+		placeholder: "Recherchez un article"
+	        }
+        }) }}
+
+    <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+
+    {{ form_end(formRecherche) }}
 
         
         <h2 class="text-center my-3">Liste des produits</h2>
         <div class="row">
-            {% for produits in produit %}
+            {% for produits in produit |  sortByField('nom')%}
 
             <div class="col-md-4">
                 <div class="card mb-4">
                     <h3 class="card-header">{{ produits.nom }}</h3>
+					
+					
                     <img src="{{ produits.image }}" alt="Image du produit">
+					<div class="card body">
+						<h3 class="card-header">{{ produits.categorie.titre }} </h3>
+                    </div>
                     <div class="card body">
 						{{ produits.description | slice(0, 50) | raw }}...
                         <p class="card-text text-end fw-bold">{{ produits.prix }} €</p>

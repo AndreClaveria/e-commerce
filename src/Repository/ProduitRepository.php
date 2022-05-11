@@ -21,6 +21,7 @@ class ProduitRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produit::class);
+    
     }
 
     /**
@@ -46,6 +47,20 @@ class ProduitRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
+    public function getProduitsByName($saisie)
+        {
+            // createQueryBuilder() prend en arg un alias qui représente la table
+            return $this->createQueryBuilder('a')
+                        ->andWhere('a.nom LIKE :val')
+                        ->setParameter('val', "%$saisie%")
+                        ->orderBy('a.nom', 'ASC')
+                        ->getQuery()
+                        ->getResult();
+        }
+
+    
+
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects

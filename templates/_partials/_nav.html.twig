@@ -2,10 +2,11 @@
   <div class="bg-dark p-4">
     <div class="nav-dessus">
       {% if app.user %}
-      <h2 class="text-white h4"> Bienvenue {{ app.user.pseudo }}</h2>
-      <div>
-        <a href="/register">Profil</a>
-        <a href="/cart">Panier</a>
+      <h3> Bienvenue <span>{{ app.user.pseudo }}</span></h3>
+      <div class="contener-button">
+        <a href="/register" class="button-nav"> <img src="{{asset('assets/images/user.png')}}" alt="user"></a>
+        <a href="{{ path('article_create') }}" class="button-nav"><img src="{{asset('assets/images/edit.png')}}" alt="new"></a>
+        <a href="{{ path('app_cart') }}" class="button-nav"> <img src="{{asset('assets/images/bag.png')}}" alt="panier"></a>
       </div>
       {% endif %}
     </div>
@@ -23,14 +24,16 @@
       </button>
 
       {% endif %}
-      <a href="/">Home</a>
+      <a href="{{ path('app_main') }}" class="button-nav"> <img src="{{asset('assets/images/home.png')}}" alt="home"></a>
     </div>
+
+   
     <div>
       {% if app.user %}
       <a href="{{ path('app_logout') }}">Logout</a>
       {% else %}
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+      <a href="{{ path('app_register') }}">Register</a>
+      <a href="{{ path('app_login') }}">Login</a>
       {% endif %}
     </div>
   </div>

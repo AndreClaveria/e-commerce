@@ -43,6 +43,7 @@ class Produit
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        
     }
 
     public function getId(): ?int

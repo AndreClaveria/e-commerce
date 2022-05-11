@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<section class="row article">
+		 <img src="{{ produit.image }}" alt="Image du produit">
+					<div class="card body">
+						<h3 class="card-header">{{ produit.categorie.titre }} </h3>
+                    </div>
+                    <div class="card body">
+						{{ produit.description }}
+                        <p class="card-text text-end fw-bold">{{ produit.prix }} €</p>
+                    </div>
+					
+					<div class="card-body text-end">
+                        <a href="{{ path('cart_add', {id: produit.id}) }}"></a>
+                        <a href="{{ path('cart_add', {id: produit.id}) }}" class="card-link btn btn-primary">Ajouter au
+                            panier</a>
+                    </div>
+					
+	    </section>
+
+{% endblock %}

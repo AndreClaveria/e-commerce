@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h1>
+{% if editMode %}
+    Modification de l'article
+{% else %}
+Création d'un article    
+{% endif %}
+</h1>
+
+{# {{ form(formArticle) }} #}
+{# form() permet d'afficher un formulaire #}
+{# symfony est capable de décider quel type de champ afficher en fonction du type de la propriété #}
+
+{{ form_start(formProduit) }}
+{# form_widget() permet de gérer un champ d'un formulaire #}
+{# form_row() permet de gérer un champ d'un formulaire et son label #}
+
+{{ form_row(formProduit.nom, {
+    'label': "Titre", 
+    'attr': {
+        'placeholder': "Titre de l'article"
+    }
+}) }}
+
+{{ form_row(formProduit.description, {
+    'label': "Contenu",
+    'attr': {
+        'placeholder': "Contenu de l'article"
+    }
+}) }}
+
+{{ form_row(formProduit.prix, {
+    'label': "prix",
+    'attr': {
+        'placeholder': "prix de l'article"
+    }
+}) }}
+
+{{ form_row(formProduit.slug, {
+    'label': formProduit.nom,
+    'attr': {
+        'placeholder': "slug"
+    }
+}) }}
+
+{{ form_row(formProduit.image, {
+    'label': formProduit.image,
+    'attr': {
+        'placeholder': "placer l'URL d'une image"
+    }
+}) }}
+
+{{ form_row(formProduit.categorie, {
+    label: "Catégorie"
+}) }}
+
+
+
+<button type="submit" class="btn btn-primary">
+{% if editMode %}
+Enregistrer les modifications
+{% else %}
+    Ajouter l'article
+{% endif %}
+</button>
+
+{{ form_end(formProduit) }}
+
+{% endblock %}
