@@ -33,6 +33,25 @@ class CartService
       // dd($session->get('cart'));
       // dd( = dump & die : afficher des infos et tuer l'exécution du code)
     }
+
+    public function sub($id){
+        // RequestStack est une classe qui contient la session
+        $session = $this->rs->getSession();
+  
+        $cart = $session->get('cart', []);
+        //si le produit existe déja 
+        if (!empty($cart[$id]))
+            $cart[$id]--;
+        else
+            $cart[$id] = 0;
+        // je récupère l'attribut de session 'cart' s'il existe, ou un tableau vide
+  
+        $session->set('cart', $cart);
+        // je sauvegarde l'état de mon panier en session a l'attribut de session 'cart'
+  
+        // dd($session->get('cart'));
+        // dd( = dump & die : afficher des infos et tuer l'exécution du code)
+      }
     public function remove($id){
     
     $session = $this->rs->getSession();

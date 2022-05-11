@@ -19,7 +19,16 @@
 					<tr>
 						<td>{{ item.product.nom }}</td>
 						<td>{{ item.product.prix }}</td>
-						<td>{{ item.quantity }}</td>
+						<td>
+						{{ item.quantity }}
+							<a href="{{ path('cart_add', {id: item.product.id}) }}" class="btn-sm btn-danger">
+								<i>+1</i>
+							</a>
+							<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="btn-sm btn-danger">
+								<i>-1</i>
+							</a>
+							
+						</td>
 						<td>{{ item.product.prix * item.quantity }}€</td>
 						<td>
 							<a href="{{ path('cart_remove', {id: item.product.id}) }}" class="btn-sm btn-danger">
