@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Commentaire;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Form\RechercheType;
+use App\Form\CommentaireType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,9 +39,32 @@ class MainController extends AbstractController
     }
 
     #[Route('produit/show/{id}', name: 'details')]
-    public function details(Produit $produit)
+    public function details(Request $request, EntityManagerInterface $manager, Produit $produit, Commentaire $commentaire=null)
     {
-        return $this->render('produit/details.html.twig', compact('produit'));
+        $user = $this->getUser();
+        $commentaire = new Commentaire;
+        $commentaire->setUser($user);
+        $commentaire->setProduit($produit);
+        $commentaire->setCreatedAt(new \DateTime());
+        
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+        dump($form);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($commentaire);
+            $manager->flush();
+            return $this->redirectToRoute('details',[
+                'id' => $produit->getId()
+            ]
+            );
+        }
+
+        return $this->render('produit/details.html.twig', [
+            'produit'=> $produit,
+            'formCommentaire' => $form->createView()
+        ]);
     }
 
     #[Route('/article/new', name:'article_create')]
@@ -72,6 +96,5 @@ class MainController extends AbstractController
             'formProduit' => $form->createView()
         ]);
     }
-
 
 }

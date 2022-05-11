@@ -2,16 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
-use App\Entity\Produit;
 use App\Entity\User;
+use App\Entity\Produit;
 use App\Entity\Category;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-
 use Symfony\Component\Form\FormBuilderInterface;
+
+
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class ProduitType extends AbstractType
 {
@@ -25,11 +27,21 @@ class ProduitType extends AbstractType
                 'choice_label' => 'titre',
             ])
             
-            ->add('nom')
-            ->add('description')
-            ->add('prix')
-            ->add('image')
-            ->add('slug')
+            ->add('nom', null, array(
+                'required' => false
+            ))
+            ->add('description', null, array(
+                'required' => false
+            ))
+            ->add('prix', null, array(
+                'required' => false
+            ))
+            ->add('image', null, array(
+                'required' => false
+            ))
+           ->add('slug', null, array(
+                'required' => false
+            ))
             
             
         ;

@@ -23,4 +23,31 @@
         </div>
     </div>
 </div>
+<h2 class="mx-auto m-3">Commentaires</h2>
+	<section id="commentaire" class="col-md-10 mx-auto">
+		{% for commentaire in produit.commentaires %}
+			<div class="comment">
+				<div class="row">
+					<div class="col-md-3">
+					<a href="{{ path('profile_show', {id: commentaire.user.id}) }}">{{commentaire.user.pseudo}}</a>
+						(<small>{{ commentaire.createdAt|date('d/m/Y à H:i:s') }}</small>)
+					</div>
+					<div class="col-md-9">
+						{{ commentaire.contenu|raw }}
+					</div>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	</section>
+
+	{{ form_start(formCommentaire) }}
+	{{ form_row(formCommentaire.contenu, {
+    'attr': {
+        'placeholder': "Commentaire"
+    }
+}) }}
+	<button type="submit" class="btn btn-primary" label: "Valider">
+	<i class="fas fa-share"></i>
+	{{ form_end(formCommentaire) }}
 {% endblock %}
