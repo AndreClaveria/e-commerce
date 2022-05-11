@@ -11,7 +11,7 @@
                 <h4 class="card-des"><span>Categorie : </span> {{ produit.categorie.titre }}</h4>
                 <h4 class="card-des"><span>Description : </span>{{ produit.description }}</h4>
                 <p class="prixxx">{{ produit.prix }} €</p>
-                {% if app.user %}
+               {% if app.user %} 
                 <a href="{{ path('cart_add', {id: produit.id}) }}" class="ajouter">Ajouter au panier</a>
                 {% endif %}
             </div>
@@ -23,6 +23,7 @@
         </div>
     </div>
 </div>
+
 <h2 class="mx-auto m-3">Commentaires</h2>
 	<section id="commentaire" class="col-md-10 mx-auto">
 		{% for commentaire in produit.commentaires %}
@@ -40,7 +41,7 @@
 			<hr>
 		{% endfor %}
 	</section>
-
+{% if app.user %}
 	{{ form_start(formCommentaire) }}
 	{{ form_row(formCommentaire.contenu, {
     'attr': {
@@ -50,4 +51,5 @@
 	<button type="submit" class="btn btn-primary" label: "Valider">
 	<i class="fas fa-share"></i>
 	{{ form_end(formCommentaire) }}
+     {% endif %}
 {% endblock %}
