@@ -3,38 +3,29 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-    <div class="pour-centrer">
-    <div class="carre-detail">
-        <div class="left">
-            <div>
-                <h5 class="card-title">{{ app.user.pseudo }}</h5>
-                <h5 class="card-title">{{ app.user.email }}</h5>
-
-                
-            </div>
+<div class="panier-cadre">
+    <div>
+        <div class="pro">
+            <h5 class="card-title">{{ app.user.pseudo }}</h5>
+            <h5 class="card-title">{{ app.user.email }}</h5>
+            <p>{{ app.user.produits|length}} Produits</p>
         </div>
-        <div>
-
-        <h2 class="text-center mx-auto m-3">Produit de {{ app.user.pseudo }} {{ app.user.produits|length}})</h2>
-        <br>
-        <br>
         <table class="table">
-	
-				{% for produits in app.user.produits %}
-				<tr>
-					<td>{{ produits.nom }}</td>
-					<td>{{ produits.prix }}</td>
-                    <a href="{{ path('article_edit', {id: produits.id}) }}" class="button-nav"> <img
-								src="{{asset('assets/images/plus.png')}}" alt="user">
-					</a>
+        <tbody>
+            {% for produits in app.user.produits %}
+            <tr>
+                <td>{{ produits.nom }}</td>
+                <td>{{ produits.prix }}</td>
+                <td>
+                <a href="{{ path('article_edit', {id: produits.id}) }}" class="button-nav"> <img
+                        src="{{asset('assets/images/plus.png')}}" alt="user">
+                </a>
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+        </table>
 
-				{% endfor %}
-			</tbody>
-			
-
-		</table>
-        </div>
-        
     </div>
 </div>
 {% endblock %}

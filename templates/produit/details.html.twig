@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<div class="pour-centrer">
+<div class="pour-centrer-detail">
     <div class="carre-detail">
         <div class="left">
             <div>
@@ -11,7 +11,7 @@
                 <h4 class="card-des"><span>Categorie : </span> {{ produit.categorie.titre }}</h4>
                 <h4 class="card-des"><span>Description : </span>{{ produit.description }}</h4>
                 <p class="prixxx">{{ produit.prix }} €</p>
-               {% if app.user %} 
+                {% if app.user %}
                 <a href="{{ path('cart_add', {id: produit.id}) }}" class="ajouter">Ajouter au panier</a>
                 {% endif %}
             </div>
@@ -22,34 +22,27 @@
             </div>
         </div>
     </div>
+    <div class="comments">
+        <h5 class="card-title">Commentaires</h2>
+            <section id="commentaire">
+                {% for commentaire in produit.commentaires %}
+                    <div class="row">
+                            <a href="{{ path('profile_show', {id: commentaire.user.id}) }}">{{commentaire.user.pseudo}}</a>
+                            <p>{{ commentaire.createdAt|date('d/m/Y à H:i:s') }}</p>
+                            <p>{{ commentaire.contenu|raw }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+            {% if app.user %}
+            {{ form_start(formCommentaire) }}
+            {{ form_row(formCommentaire.contenu, {
+                'attr': {
+                    'placeholder': "Commentaire"
+                }
+            }) }}
+            <button type="submit" class="ajouter">New</button>
+                {{ form_end(formCommentaire) }}
+                {% endif %}
+    </div>
 </div>
-
-<h2 class="mx-auto m-3">Commentaires</h2>
-	<section id="commentaire" class="col-md-10 mx-auto">
-		{% for commentaire in produit.commentaires %}
-			<div class="comment">
-				<div class="row">
-					<div class="col-md-3">
-					<a href="{{ path('profile_show', {id: commentaire.user.id}) }}">{{commentaire.user.pseudo}}</a>
-						(<small>{{ commentaire.createdAt|date('d/m/Y à H:i:s') }}</small>)
-					</div>
-					<div class="col-md-9">
-						{{ commentaire.contenu|raw }}
-					</div>
-				</div>
-			</div>
-			<hr>
-		{% endfor %}
-	</section>
-{% if app.user %}
-	{{ form_start(formCommentaire) }}
-	{{ form_row(formCommentaire.contenu, {
-    'attr': {
-        'placeholder': "Commentaire"
-    }
-}) }}
-	<button type="submit" class="btn btn-primary" label: "Valider">
-	<i class="fas fa-share"></i>
-	{{ form_end(formCommentaire) }}
-     {% endif %}
 {% endblock %}
