@@ -22,7 +22,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('categorie', EntityType::class, [  // j'indique que le champ category est une entity
                 'class' => Categorie::class, // je précise quelle entity
-                'choice_label' => 'titre'
+                'choice_label' => 'titre',
             ])
             
             ->add('nom')

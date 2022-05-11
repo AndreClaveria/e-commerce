@@ -1,60 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-	<h1 class="text-center">Mon panier</h1>
+<div class="panier-cadre">
+	<div>
+	<h2>Mon panier</h2>
 	{% if items %}
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Product</th>
-					<th>Prix</th>
-					<th>Quantité</th>
+					<th>Produit</th>
+					<th>Prix(€)</th>
+					<th>Quantité(s)</th>
 					<th>Total</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for item in items %}
-					<tr>
-						<td>{{ item.product.nom }}</td>
-						<td>{{ item.product.prix }}</td>
-						<td>
+				<tr>
+					<td>{{ item.product.nom }}</td>
+					<td>{{ item.product.prix }}</td>
+					<td>
+						<a href="{{ path('cart_add', {id: item.product.id}) }}" class="button-nav"> <img
+								src="{{asset('assets/images/plus.png')}}" alt="user">
+						</a>
 						{{ item.quantity }}
-							<a href="{{ path('cart_add', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/plus.png')}}" alt="user">
-								<i>+1</i>
-							</a>
-							<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/minus.png')}}" alt="user">
-								<i>-1</i>
-							</a>
-							
-						</td>
-						<td>{{ item.product.prix * item.quantity }}€</td>
-						<td>
-							<a href="{{ path('cart_remove', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/delete.png')}}" alt="user">
-								<i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>
+						<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="button-nav"> <img
+								src="{{asset('assets/images/minus.png')}}" alt="user">
+						</a>
+
+					</td>
+					<td>{{ item.product.prix * item.quantity }}€</td>
+					<td>
+						<a href="{{ path('cart_remove', {id: item.product.id}) }}" class="button-nav"> <img
+								src="{{asset('assets/images/delete.png')}}" alt="user">
+							<i class="fas fa-trash"></i>
+						</a>
+					</td>
+				</tr>
 				{% endfor %}
 			</tbody>
-            <tfoot>
-            
-            <tr>
-                <td colspan="3" class="text-end">Total :</td>
-                <td>{{ total }}€    </td>
-            </tr>
+			<tfoot>
 
-            </tfoot>
+				<tr>
+					<td colspan="3" class="text-end">Total :</td>
+					<td>{{ total }}€ </td>
+				</tr>
+
+			</tfoot>
 
 		</table>
-		<a href="{{ path('cart_empty') }}" class="button-nav"> <img src="{{asset('assets/images/trash.png')}}" alt="user">
-								<i class="fas fa-trash">Vider</i>
-							</a>
-		<a href="{{ path('cart_paid') }}" class="button-nav"> <img src="{{asset('assets/images/user.png')}}" alt="user">
-								<i class="fas fa-trash">Payer</i>
-							</a>
-	{% else %}
-		<p>Mon panier est vide !</p>
-	{% endif %}
+		<a href="{{ path('cart_empty') }}" class="button-nav-panier"> <img src="{{asset('assets/images/trash.png')}}"
+				alt="user">
+		</a>
+		<a href="{{ path('cart_paid') }}" class="ajouter">
+			Payer
+		</a>
+		{% else %}
+		<p class="vide">Mon panier est vide !</p>
+		<p class="vide">Ajouter des articles pour le remplir !</p>
+		{% endif %}
+	</div>
+</div>
 {% endblock %}

@@ -1,72 +1,78 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<div class="pour-centrer">
+    <div class="carrer-noirr">
+        <div class="register-login">
+            <h2>
+                {% if editMode %}
+                Modification de l'article
+                {% else %}
+                Création d'un article
+                {% endif %}
+            </h2>
 
-<h1>
-{% if editMode %}
-    Modification de l'article
-{% else %}
-Création d'un article    
-{% endif %}
-</h1>
+            {# {{ form(formArticle) }} #}
+            {# form() permet d'afficher un formulaire #}
+            {# symfony est capable de décider quel type de champ afficher en fonction du type de la propriété #}
 
-{# {{ form(formArticle) }} #}
-{# form() permet d'afficher un formulaire #}
-{# symfony est capable de décider quel type de champ afficher en fonction du type de la propriété #}
+            {{ form_start(formProduit) }}
+            {# form_widget() permet de gérer un champ d'un formulaire #}
+            {# form_row() permet de gérer un champ d'un formulaire et son label #}
 
-{{ form_start(formProduit) }}
-{# form_widget() permet de gérer un champ d'un formulaire #}
-{# form_row() permet de gérer un champ d'un formulaire et son label #}
-
-{{ form_row(formProduit.nom, {
+            {{ form_row(formProduit.nom, {
     'label': "Titre", 
     'attr': {
-        'placeholder': "Titre de l'article"
+        'placeholder': "Titre de l'article", 
     }
 }) }}
 
-{{ form_row(formProduit.description, {
+            {{ form_row(formProduit.description, {
     'label': "Contenu",
     'attr': {
         'placeholder': "Contenu de l'article"
     }
 }) }}
 
-{{ form_row(formProduit.prix, {
-    'label': "prix",
+            {{ form_row(formProduit.prix, {
+    'label': "Prix",
     'attr': {
-        'placeholder': "prix de l'article"
+        'placeholder': "Prix de l'article en"
     }
 }) }}
 
-{{ form_row(formProduit.slug, {
+            {{ form_row(formProduit.slug, {
     'label': formProduit.nom,
     'attr': {
-        'placeholder': "slug"
+        'placeholder': "Slug"
     }
 }) }}
 
-{{ form_row(formProduit.image, {
+            {{ form_row(formProduit.image, {
     'label': formProduit.image,
     'attr': {
-        'placeholder': "placer l'URL d'une image"
+        'placeholder': "Placer l'URL d'une image"
     }
 }) }}
 
-{{ form_row(formProduit.categorie, {
+            {{ form_row(formProduit.categorie, {
     label: "Catégorie"
 }) }}
 
 
 
-<button type="submit" class="btn btn-primary">
-{% if editMode %}
-Enregistrer les modifications
-{% else %}
-    Ajouter l'article
-{% endif %}
-</button>
+            <button type="submit"  class="ajouter">
+                {% if editMode %}
+                Enregistrer les modifications
+                {% else %}
+                Ajouter l'article
+                {% endif %}
+            </button>
 
-{{ form_end(formProduit) }}
+            {{ form_end(formProduit) }}
 
+            
+        </div>
+    </div>
+</div>
 {% endblock %}
