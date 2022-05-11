@@ -31,17 +31,21 @@
 					<div class="card body">
 						<h3 class="card-header">{{ produits.categorie.titre }} </h3>
                     </div>
+
                     <div class="card body">
 						{{ produits.description | slice(0, 50) | raw }}...
                         <p class="card-text text-end fw-bold">{{ produits.prix }} €</p>
                     </div>
+                    <div class="card-body text-end">
+                    <a href="{{ path('details', {id: produits.id}) }}" class="button-nav"> <img src="{{asset('assets/images/zoom.png')}}" alt="panier"></a>
 					 {% if app.user %}	
-					<div class="card-body text-end">
+					
                         <a href="{{ path('cart_add', {id: produits.id}) }}"></a>
                         <a href="{{ path('cart_add', {id: produits.id}) }}" class="card-link btn btn-primary">Ajouter au
                             panier</a>
-                    </div>
+                    
 					{% endif %}
+                    </div>
 
                 </div>
             </div>
