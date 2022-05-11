@@ -21,17 +21,17 @@
 						<td>{{ item.product.prix }}</td>
 						<td>
 						{{ item.quantity }}
-							<a href="{{ path('cart_add', {id: item.product.id}) }}" class="btn-sm btn-danger">
+							<a href="{{ path('cart_add', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/plus.png')}}" alt="user">
 								<i>+1</i>
 							</a>
-							<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="btn-sm btn-danger">
+							<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/minus.png')}}" alt="user">
 								<i>-1</i>
 							</a>
 							
 						</td>
 						<td>{{ item.product.prix * item.quantity }}€</td>
 						<td>
-							<a href="{{ path('cart_remove', {id: item.product.id}) }}" class="btn-sm btn-danger">
+							<a href="{{ path('cart_remove', {id: item.product.id}) }}" class="button-nav"> <img src="{{asset('assets/images/delete.png')}}" alt="user">
 								<i class="fas fa-trash"></i>
 							</a>
 						</td>
@@ -46,7 +46,14 @@
             </tr>
 
             </tfoot>
+
 		</table>
+		<a href="{{ path('cart_empty') }}" class="button-nav"> <img src="{{asset('assets/images/trash.png')}}" alt="user">
+								<i class="fas fa-trash">Vider</i>
+							</a>
+		<a href="{{ path('cart_paid') }}" class="button-nav"> <img src="{{asset('assets/images/user.png')}}" alt="user">
+								<i class="fas fa-trash">Payer</i>
+							</a>
 	{% else %}
 		<p>Mon panier est vide !</p>
 	{% endif %}

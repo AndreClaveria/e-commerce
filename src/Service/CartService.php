@@ -85,6 +85,15 @@ public function getCartWithData(){
         $session->set('qt', $qt);
         return $cartWithData;
 }
+
+public function empty() 
+{
+    $session = $this->rs->getSession();
+    $clear = [];
+
+    $session->set('cart', $clear);
+
+}
 public function getTotal(){
     $total = 0;
 
