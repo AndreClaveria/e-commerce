@@ -8,14 +8,14 @@
         <div class="pro">
             <h5 class="card-title">{{ app.user.pseudo }}</h5>
             <h5 class="card-title">{{ app.user.email }}</h5>
-            <p>{{ app.user.produits|length}} Produits</p>
+            <p>{{ app.user.produits|length}} produits postés</p>
         </div>
         <table class="table">
         <tbody>
             {% for produits in app.user.produits %}
             <tr>
-                <td>{{ produits.nom }}</td>
-                <td>{{ produits.prix }}</td>
+                <td><b>Produits</b> : {{ produits.nom }}</td>
+                <td><b>Prix</b> : {{ produits.prix }} €</td>
                 <td>
                 <a href="{{ path('article_edit', {id: produits.id}) }}" class="button-nav"> <img
                         src="{{asset('assets/images/plus.png')}}" alt="user">

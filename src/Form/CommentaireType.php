@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentaireType extends AbstractType
 {
@@ -14,7 +15,12 @@ class CommentaireType extends AbstractType
     {
         $builder
         ->add('contenu', TextType::class, array(
-            'label' => 'Commenter'
+            'label' => 'Commenter',
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Veuillez écrire un commentaire'
+                ])
+            ]
         ));
         ;
     }

@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -27,20 +28,40 @@ class ProduitType extends AbstractType
                 'choice_label' => 'titre',
             ])
             
-            ->add('nom', null, array(
-                'required' => false
+            ->add('nom', TextType::class, array(
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez indiquer le nom'
+                    ])
+                ]
             ))
-            ->add('description', null, array(
-                'required' => false
+            ->add('description', TextType::class, array(
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez écrire une description'
+                    ])
+                ]
             ))
-            ->add('prix', null, array(
-                'required' => false
+            ->add('prix', TextType::class, array(
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez indiquer le prix'
+                    ])
+                ]
             ))
-            ->add('image', null, array(
-                'required' => false
+            ->add('image', TextType::class, array(
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez mettre une image'
+                    ])
+                ]
             ))
-           ->add('slug', null, array(
-                'required' => false
+           ->add('slug', TextType::class, array(
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Veuillez un slug'
+                ])
+            ]
             ))
             
             
