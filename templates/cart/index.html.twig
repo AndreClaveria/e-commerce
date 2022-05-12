@@ -21,14 +21,13 @@
 					<td>{{ item.product.nom }}</td>
 					<td>{{ item.product.prix }}</td>
 					<td>
+						<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="button-nav"> <img
+							src="{{asset('assets/images/minus.png')}}" alt="user">
+						</a>
+						{{ item.quantity }}
 						<a href="{{ path('cart_add', {id: item.product.id}) }}" class="button-nav"> <img
 								src="{{asset('assets/images/plus.png')}}" alt="user">
 						</a>
-						{{ item.quantity }}
-						<a href="{{ path('cart_sub', {id: item.product.id}) }}" class="button-nav"> <img
-								src="{{asset('assets/images/minus.png')}}" alt="user">
-						</a>
-
 					</td>
 					<td>{{ item.product.prix * item.quantity }}€</td>
 					<td>
