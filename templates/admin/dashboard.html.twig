@@ -3,6 +3,7 @@
 {% block content %}
 
     <div class"jumbotron">
+         <a href="{{ path('app_main') }}" class="button-nav"> <img src="{{asset('assets/images/home.png')}}" alt="home"></a>
         <h1>Adminstration : {{ app.user.pseudo }}</h1>
         <p class="lead">Bienvenue dans l'interface d'aministration de votre site internet</p>
     </div>

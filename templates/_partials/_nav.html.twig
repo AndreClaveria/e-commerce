@@ -2,10 +2,14 @@
   <div class="bg-dark p-4">
     <div class="nav-dessus">
       {% if app.user %}
-      <h3> Bienvenue <span>
-      {{ app.user.pseudo }}
+      <h3> Bienvenue 
+      {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('admin') }}"><font size="7">{{ app.user.pseudo }}</font></a>
+      {% else %}
+      <span>{{ app.user.pseudo }}</span>
+      {% endif %}
       
-      </span></h3>
+      </h3>
       <div class="contener-button">
         <a href="{{ path('profile') }}" class="button-nav"> <img src="{{asset('assets/images/user.png')}}" alt="user"></a>
         <a href="{{ path('article_create') }}" class="button-nav"><img src="{{asset('assets/images/edit.png')}}" alt="new"></a>
