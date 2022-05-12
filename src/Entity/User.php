@@ -41,6 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->produits = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->setRoles(array('ROLE_USER'));
     }
 
     public function getId(): ?int

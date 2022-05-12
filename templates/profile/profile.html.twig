@@ -14,7 +14,7 @@
         <tbody>
             {% for produits in app.user.produits %}
             <tr>
-                <td><b>Produits</b> : {{ produits.nom }}</td>
+                <td><b>Produits</b> : <a href="{{ path('details' , {id: produits.id}) }}">{{ produits.nom }}</a></td>
                 <td><b>Prix</b> : {{ produits.prix }} €</td>
                 <td>
                 <a href="{{ path('article_edit', {id: produits.id}) }}" class="button-nav"> <img
